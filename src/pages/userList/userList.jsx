@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import './userList.css'
 import { DataGrid } from '@material-ui/data-grid';
 import { DeleteOutline } from '@material-ui/icons';
-import { rows } from '../../dummyData';
+import { userRows } from '../../dummyData';
 import { Link } from 'react-router-dom';
 
 export default function UserList() {
-    const [data, setData] = useState(rows);
+    const [data, setData] = useState(userRows);
 
     const handleDelete = (id) => {
         setData(data.filter(item => item.id !== id))
@@ -14,8 +14,8 @@ export default function UserList() {
     
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
-        { field: 'user', headerName: 'User', width: 200, renderCell: (params) => {
+        { field: 'id', headerName: 'ID', width: 100 },
+        { field: 'user', headerName: 'User', width: 250, renderCell: (params) => {
             return (    
                 <div className='userListUser'>
                     <img className='userListImg' src={params.row.avatar} alt='' />
@@ -23,13 +23,13 @@ export default function UserList() {
                 </div>
             )
         } },
-        { field: 'email', headerName: 'Email', width: 200 },
-        { field: 'status', headerName: 'Status', width: 120 },
-        { field: 'transaction', headerName: 'Transaction', width: 160 },
+        { field: 'email', headerName: 'Email', width: 250 },
+        { field: 'status', headerName: 'Status', width: 150 },
+        { field: 'transaction', headerName: 'Transaction', width: 200 },
         {
             field: 'action',
             headerName: 'Action',
-            width: 150,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <>
@@ -46,10 +46,11 @@ export default function UserList() {
     
 return (
     <div className='userList'>
+        <h1 className='userListTitle'>User List</h1>
         <DataGrid
             rows={data}
             columns={columns}
-            pageSize={10}
+            pageSize={9}
             checkboxSelection
             disableSelectionOnClick
         />
